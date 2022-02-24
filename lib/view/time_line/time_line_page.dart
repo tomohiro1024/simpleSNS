@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_sns/model/account.dart';
 import 'package:simple_sns/model/post.dart';
-import 'package:simple_sns/view/time_line/post_page.dart';
 
 class TimeLinePage extends StatefulWidget {
   const TimeLinePage({Key? key}) : super(key: key);
@@ -115,17 +114,6 @@ class _TimeLinePageState extends State<TimeLinePage> {
             ),
           );
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.cyan,
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => PostPage()));
-        },
-        child: Icon(
-          Icons.mode_comment,
-          color: Colors.pinkAccent,
-        ),
       ),
     );
   }

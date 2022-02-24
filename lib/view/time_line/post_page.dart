@@ -19,7 +19,7 @@ class _PostPageState extends State<PostPage> {
           style: TextStyle(color: Colors.pinkAccent),
         ),
         backgroundColor: Colors.cyan,
-        iconTheme: IconThemeData(color: Colors.amber),
+        iconTheme: IconThemeData(color: Colors.pinkAccent),
       ),
       body: Padding(
         padding: const EdgeInsets.all(25.0),
