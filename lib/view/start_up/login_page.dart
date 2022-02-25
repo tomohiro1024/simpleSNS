@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_sns/view/screen.dart';
+import 'package:simple_sns/view/start_up/create_account_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -56,10 +57,31 @@ class _LoginPageState extends State<LoginPage> {
                     TextSpan(text: 'アカウントを持ってない方は'),
                     TextSpan(
                         text: 'こちら',
-                        style: TextStyle(color: Colors.pinkAccent),
+                        style: TextStyle(
+                          color: Colors.pinkAccent,
+                          decoration: TextDecoration.underline,
+                        ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            print('アカウント作成');
+                            Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (context, animation,
+                                          secondaryAnimation) =>
+                                      CreateAccountPage(),
+                                  transitionsBuilder: (context, animation,
+                                      secondaryAnimation, child) {
+                                    return FadeUpwardsPageTransitionsBuilder()
+                                        .buildTransitions(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    CreateAccountPage()),
+                                            context,
+                                            animation,
+                                            secondaryAnimation,
+                                            child);
+                                  },
+                                ));
                           }),
                   ],
                 ),
