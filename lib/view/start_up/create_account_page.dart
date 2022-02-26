@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({Key? key}) : super(key: key);
@@ -13,6 +16,18 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   TextEditingController serfIntroductionController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  File? image;
+  ImagePicker picker = ImagePicker();
+
+  // 画像の取得
+  Future<void> getImageFromGallery() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        image = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +46,19 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
           child: Column(
             children: [
               SizedBox(height: 40),
-              CircleAvatar(
-                radius: 70,
-                child: Icon(Icons.add),
+              GestureDetector(
+                onTap: () async {
+                  await getImageFromGallery();
+                },
+                child: CircleAvatar(
+                  foregroundImage: image == null ? null : FileImage(image!),
+                  backgroundColor: Colors.cyan,
+                  radius: 70,
+                  child: Icon(
+                    Icons.add,
+                    color: Colors.pinkAccent,
+                  ),
+                ),
               ),
               Container(
                 width: 250,
@@ -83,7 +108,8 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                       userIdController.text.isNotEmpty &&
                       serfIntroductionController.text.isNotEmpty &&
                       emailController.text.isNotEmpty &&
-                      passwordController.text.isNotEmpty) {
+                      passwordController.text.isNotEmpty &&
+                      image != null) {
                     Navigator.pop(context);
                   }
                 },
