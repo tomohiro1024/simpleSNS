@@ -8,10 +8,10 @@ class Authentication {
   static Future<dynamic> signUp(
       {required String email, required String pass}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: pass);
+      UserCredential newAccount = await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: pass);
       print('認証登録OK');
-      return true;
+      return newAccount;
     } on FirebaseAuthException catch (e) {
       print('認証登録エラー: $e');
       return false;
