@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_sns/model/account.dart';
@@ -18,8 +19,8 @@ class _TimeLinePageState extends State<TimeLinePage> {
     userId: 'attack_on_titan',
     imagePath:
         'https://pbs.twimg.com/media/FMRDuQ8acAAk9aU?format=jpg&name=small',
-    createdTime: DateTime.now(),
-    updatedTime: DateTime.now(),
+    createdTime: Timestamp.now(),
+    updatedTime: Timestamp.now(),
   );
 
   List<Post> postList = [

@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:simple_sns/model/account.dart';
 import 'package:simple_sns/utils/authentication.dart';
+import 'package:simple_sns/utils/firestore/users.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({Key? key}) : super(key: key);
@@ -33,12 +35,13 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   }
 
   // 画像をストレージにアップロード
-  Future<void> uploadImage(String uid) async {
+  Future<String> uploadImage(String uid) async {
     final FirebaseStorage storageInstance = FirebaseStorage.instance;
     final Reference ref = storageInstance.ref();
     await ref.child(uid).putFile(image!);
     String downloadUrl = await storageInstance.ref(uid).getDownloadURL();
     print('image_path: $downloadUrl');
+    return downloadUrl;
   }
 
   @override
@@ -122,13 +125,31 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                       emailController.text.isNotEmpty &&
                       passwordController.text.isNotEmpty &&
                       image != null) {
+                    // アカウントの認証
                     var result = await Authentication.signUp(
                         email: emailController.text,
                         pass: passwordController.text);
+                    // 認証が成功した場合
                     if (result is UserCredential) {
-                      await uploadImage(result.user!.uid);
-                      Navigator.pop(context);
+                      String imagePath = await uploadImage(result.user!.uid);
+                      Account newAccount = Account(
+                        id: result.user!.uid,
+                        name: nameController.text,
+                        userId: userIdController.text,
+                        selfIntroduction: serfIntroductionController.text,
+                        imagePath: imagePath,
+                      );
+                      var _result = await UserFirestore.setUser(newAccount);
+                      if (_result == true) {
+                        Navigator.pop(context);
+                      }
                     }
+                  } else {
+                    final snackBar = SnackBar(
+                      backgroundColor: Colors.red,
+                      content: Text('全ての項目を入力してください'),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
                 },
                 child: Text(
