@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_sns/utils/authentication.dart';
+import 'package:simple_sns/utils/firestore/users.dart';
 import 'package:simple_sns/view/screen.dart';
 import 'package:simple_sns/view/start_up/create_account_page.dart';
 
@@ -91,14 +93,33 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 50),
                 ElevatedButton(
                   onPressed: () async {
-                    var result = await Authentication.emailSignIn(
-                        email: emailController.text,
-                        pass: passwordController.text);
-                    if (result == true) {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Screen()));
+                    if (emailController.text.isNotEmpty &&
+                        passwordController.text.isNotEmpty) {
+                      var result = await Authentication.emailSignIn(
+                          email: emailController.text,
+                          pass: passwordController.text);
+                      if (result is UserCredential) {
+                        var _result =
+                            await UserFirestore.getUser(result.user!.uid);
+                        if (_result == true) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Screen()));
+                        }
+                      } else {
+                        final snackBar = SnackBar(
+                          backgroundColor: Colors.red,
+                          content: Text('Eメールもしくはパスワードが間違っています'),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                    } else {
+                      final snackBar = SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text('Eメールもしくはパスワードを入力してください'),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     }
                   },
                   child: Text('Emailでログイン'),

@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:simple_sns/model/account.dart';
 import 'package:simple_sns/utils/authentication.dart';
 import 'package:simple_sns/utils/firestore/users.dart';
+import 'package:simple_sns/utils/widget_utils.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({Key? key}) : super(key: key);
@@ -47,14 +48,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.cyan,
-        iconTheme: IconThemeData(color: Colors.pinkAccent),
-        title: Text(
-          'Sign Up',
-          style: TextStyle(color: Colors.pinkAccent),
-        ),
-      ),
+      appBar: WidgetUtils.createAppBar('SignUp'),
       body: SingleChildScrollView(
         child: Container(
           width: double.infinity,

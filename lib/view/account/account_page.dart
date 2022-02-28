@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_sns/model/account.dart';
 import 'package:simple_sns/model/post.dart';
+import 'package:simple_sns/utils/authentication.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -12,16 +12,7 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-  Account myAccount = Account(
-    id: '1',
-    name: 'Eren',
-    selfIntroduction: 'Hello',
-    userId: 'attack_on_titan',
-    imagePath:
-        'https://pbs.twimg.com/media/FMRDuQ8acAAk9aU?format=jpg&name=small',
-    createdTime: Timestamp.now(),
-    updatedTime: Timestamp.now(),
-  );
+  Account myAccount = Authentication.myAccount!;
 
   List<Post> postList = [
     Post(
@@ -63,7 +54,7 @@ class _AccountPageState extends State<AccountPage> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(right: 50.0),
+                            padding: const EdgeInsets.only(right: 100.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
