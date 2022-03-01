@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:simple_sns/model/account.dart';
 import 'package:simple_sns/model/post.dart';
 import 'package:simple_sns/utils/authentication.dart';
+import 'package:simple_sns/view/account/edit_account_page.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -75,7 +76,27 @@ class _AccountPageState extends State<AccountPage> {
                         ],
                       ),
                       OutlinedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) =>
+                                        EditAccountPage(),
+                                transitionsBuilder: (context, animation,
+                                    secondaryAnimation, child) {
+                                  return FadeUpwardsPageTransitionsBuilder()
+                                      .buildTransitions(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  EditAccountPage()),
+                                          context,
+                                          animation,
+                                          secondaryAnimation,
+                                          child);
+                                },
+                              ));
+                        },
                         child: Text('Edit'),
                       )
                     ],
