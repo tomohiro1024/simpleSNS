@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:simple_sns/model/account.dart';
+import 'package:simple_sns/utils/authentication.dart';
 import 'package:simple_sns/utils/widget_utils.dart';
 
 class EditAccountPage extends StatefulWidget {
@@ -13,11 +15,19 @@ class EditAccountPage extends StatefulWidget {
 }
 
 class _EditAccountPageState extends State<EditAccountPage> {
+  // 自分のアカウント
+  Account myAccount = Authentication.myAccount!;
   TextEditingController nameController = TextEditingController();
   TextEditingController userIdController = TextEditingController();
   TextEditingController serfIntroductionController = TextEditingController();
   File? image;
   ImagePicker picker = ImagePicker();
+
+  // 初期値
+  @override
+  void initState() {
+    super.initState();
+  }
 
   // 端末の画像の取得
   Future<void> getImageFromGallery() async {
