@@ -86,6 +86,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               Container(
                 width: 250,
                 child: TextField(
+                  maxLength: 10,
                   controller: nameController,
                   decoration: InputDecoration(hintText: 'Name'),
                 ),
@@ -95,6 +96,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 child: Container(
                   width: 250,
                   child: TextField(
+                    maxLength: 10,
                     controller: userIdController,
                     decoration: InputDecoration(hintText: 'User ID'),
                   ),
@@ -104,7 +106,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 width: 250,
                 child: TextField(
                   controller: serfIntroductionController,
-                  decoration: InputDecoration(hintText: 'Self Introduction'),
+                  decoration: InputDecoration(hintText: 'Comment'),
                 ),
               ),
               Padding(

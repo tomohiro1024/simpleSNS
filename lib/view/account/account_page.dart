@@ -55,7 +55,7 @@ class _AccountPageState extends State<AccountPage> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(right: 100.0),
+                            padding: const EdgeInsets.only(right: 8.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -64,7 +64,7 @@ class _AccountPageState extends State<AccountPage> {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.pinkAccent,
-                                      fontSize: 25),
+                                      fontSize: 15),
                                 ),
                                 Text(
                                   '@${myAccount.userId}',
@@ -73,32 +73,49 @@ class _AccountPageState extends State<AccountPage> {
                               ],
                             ),
                           ),
+                          OutlinedButton(
+                            onPressed: () async {
+                              var result = await Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder: (context, animation,
+                                            secondaryAnimation) =>
+                                        EditAccountPage(),
+                                    transitionsBuilder: (context, animation,
+                                        secondaryAnimation, child) {
+                                      return FadeUpwardsPageTransitionsBuilder()
+                                          .buildTransitions(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      EditAccountPage()),
+                                              context,
+                                              animation,
+                                              secondaryAnimation,
+                                              child);
+                                    },
+                                  ));
+                              if (result == true) {
+                                setState(() {
+                                  myAccount = Authentication.myAccount!;
+                                  final snackBar = SnackBar(
+                                    backgroundColor: Colors.green,
+                                    content: Text('プロフィールを編集しました'),
+                                  );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                });
+                              }
+                            },
+                            child: Text(
+                              'Edit',
+                              style: TextStyle(color: Colors.pinkAccent),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.cyan, //ボタンの背景色
+                            ),
+                          ),
                         ],
                       ),
-                      OutlinedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder:
-                                    (context, animation, secondaryAnimation) =>
-                                        EditAccountPage(),
-                                transitionsBuilder: (context, animation,
-                                    secondaryAnimation, child) {
-                                  return FadeUpwardsPageTransitionsBuilder()
-                                      .buildTransitions(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  EditAccountPage()),
-                                          context,
-                                          animation,
-                                          secondaryAnimation,
-                                          child);
-                                },
-                              ));
-                        },
-                        child: Text('Edit'),
-                      )
                     ],
                   ),
                   SizedBox(

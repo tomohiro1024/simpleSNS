@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:simple_sns/model/account.dart';
 import 'package:simple_sns/utils/authentication.dart';
+import 'package:simple_sns/utils/firestore/users.dart';
 import 'package:simple_sns/utils/widget_utils.dart';
 
 class EditAccountPage extends StatefulWidget {
@@ -75,19 +76,25 @@ class _EditAccountPageState extends State<EditAccountPage> {
                 onTap: () async {
                   await getImageFromGallery();
                 },
-                child: CircleAvatar(
-                  foregroundImage: getImage(),
-                  backgroundColor: Colors.cyan,
-                  radius: 70,
-                  child: Icon(
-                    Icons.add_a_photo,
-                    color: Colors.pinkAccent,
-                  ),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CircleAvatar(
+                      foregroundImage: getImage(),
+                      backgroundColor: Colors.cyan,
+                      radius: 70,
+                    ),
+                    Icon(
+                      Icons.add_a_photo,
+                      color: Colors.pinkAccent,
+                    ),
+                  ],
                 ),
               ),
               Container(
                 width: 250,
                 child: TextField(
+                  maxLength: 10,
                   controller: nameController,
                   decoration: InputDecoration(hintText: 'Name'),
                 ),
@@ -97,6 +104,7 @@ class _EditAccountPageState extends State<EditAccountPage> {
                 child: Container(
                   width: 250,
                   child: TextField(
+                    maxLength: 10,
                     controller: userIdController,
                     decoration: InputDecoration(hintText: 'User ID'),
                   ),
@@ -106,7 +114,7 @@ class _EditAccountPageState extends State<EditAccountPage> {
                 width: 250,
                 child: TextField(
                   controller: serfIntroductionController,
-                  decoration: InputDecoration(hintText: 'Self Introduction'),
+                  decoration: InputDecoration(hintText: 'Comment'),
                 ),
               ),
               SizedBox(height: 30),
@@ -114,10 +122,27 @@ class _EditAccountPageState extends State<EditAccountPage> {
                 onPressed: () async {
                   if (nameController.text.isNotEmpty &&
                       userIdController.text.isNotEmpty &&
-                      serfIntroductionController.text.isNotEmpty &&
-                      image != null) {
-                    // 認証が成功した場合
-
+                      serfIntroductionController.text.isNotEmpty) {
+                    String imagePath = '';
+                    if (image == null) {
+                      imagePath = myAccount.imagePath;
+                    } else {
+                      var result = await uploadImage(myAccount.id);
+                      imagePath = result;
+                    }
+                    Account updateAccount = Account(
+                      id: myAccount.id,
+                      name: nameController.text,
+                      userId: userIdController.text,
+                      selfIntroduction: serfIntroductionController.text,
+                      imagePath: imagePath,
+                    );
+                    Authentication.myAccount = updateAccount;
+                    var result = await UserFirestore.updateUser(updateAccount);
+                    // 更新が成功した場合、画面を戻る
+                    if (result == true) {
+                      Navigator.pop(context, true);
+                    }
                   }
                 },
                 child: Text(
