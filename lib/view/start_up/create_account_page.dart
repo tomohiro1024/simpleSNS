@@ -64,7 +64,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   backgroundColor: Colors.cyan,
                   radius: 70,
                   child: Icon(
-                    Icons.add,
+                    Icons.add_a_photo,
                     color: Colors.pinkAccent,
                   ),
                 ),
