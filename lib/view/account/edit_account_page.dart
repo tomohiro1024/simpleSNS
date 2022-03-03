@@ -23,10 +23,22 @@ class _EditAccountPageState extends State<EditAccountPage> {
   File? image;
   ImagePicker picker = ImagePicker();
 
+  ImageProvider getImage() {
+    if (image == null) {
+      return NetworkImage(myAccount.imagePath);
+    } else {
+      return FileImage(image!);
+    }
+  }
+
   // 初期値
   @override
   void initState() {
     super.initState();
+    nameController = TextEditingController(text: myAccount.name);
+    userIdController = TextEditingController(text: myAccount.userId);
+    serfIntroductionController =
+        TextEditingController(text: myAccount.selfIntroduction);
   }
 
   // 端末の画像の取得
@@ -64,7 +76,7 @@ class _EditAccountPageState extends State<EditAccountPage> {
                   await getImageFromGallery();
                 },
                 child: CircleAvatar(
-                  foregroundImage: image == null ? null : FileImage(image!),
+                  foregroundImage: getImage(),
                   backgroundColor: Colors.cyan,
                   radius: 70,
                   child: Icon(

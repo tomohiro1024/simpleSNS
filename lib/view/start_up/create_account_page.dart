@@ -25,6 +25,15 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   File? image;
   ImagePicker picker = ImagePicker();
 
+  ImageProvider getImage() {
+    if (image == null) {
+      return NetworkImage(
+          'https://i2.wp.com/bumbullbee.com/wp-content/uploads/2017/03/hitogata.jpg?resize=500%2C487');
+    } else {
+      return FileImage(image!);
+    }
+  }
+
   // 端末の画像の取得
   Future<void> getImageFromGallery() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -59,14 +68,19 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 onTap: () async {
                   await getImageFromGallery();
                 },
-                child: CircleAvatar(
-                  foregroundImage: image == null ? null : FileImage(image!),
-                  backgroundColor: Colors.cyan,
-                  radius: 70,
-                  child: Icon(
-                    Icons.add_a_photo,
-                    color: Colors.pinkAccent,
-                  ),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CircleAvatar(
+                      foregroundImage: getImage(),
+                      backgroundColor: Colors.cyan,
+                      radius: 70,
+                    ),
+                    Icon(
+                      Icons.add_a_photo,
+                      color: Colors.pinkAccent,
+                    ),
+                  ],
                 ),
               ),
               Container(
