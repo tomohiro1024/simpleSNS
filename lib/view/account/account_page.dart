@@ -118,6 +118,9 @@ class _AccountPageState extends State<AccountPage> {
                       ),
                     ],
                   ),
+                  Divider(
+                    color: Colors.cyanAccent,
+                  ),
                   SizedBox(
                     height: 17,
                   ),
