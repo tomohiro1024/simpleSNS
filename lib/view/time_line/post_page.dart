@@ -28,7 +28,10 @@ class _PostPageState extends State<PostPage> {
         padding: const EdgeInsets.all(25.0),
         child: Column(
           children: [
-            TextField(controller: contentController),
+            TextField(
+              controller: contentController,
+              decoration: InputDecoration(hintText: 'Comment'),
+            ),
             SizedBox(
               height: 30,
             ),
@@ -43,6 +46,12 @@ class _PostPageState extends State<PostPage> {
                   if (result == true) {
                     Navigator.pop(context);
                   }
+                } else {
+                  final snackBar = SnackBar(
+                    backgroundColor: Colors.red,
+                    content: Text('コメントを入力してください'),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 }
               },
               child: Text(
