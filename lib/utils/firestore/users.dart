@@ -65,4 +65,7 @@ class UserFirestore {
       return false;
     }
   }
+
+  static Future<Map<String, Account>?> getPostUserMap(
+      List<String> accountIds) async {}
 }
