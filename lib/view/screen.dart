@@ -40,8 +40,8 @@ class _ScreenState extends State<Screen> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.cyan,
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          var result = await Navigator.push(
               context,
               PageRouteBuilder(
                 pageBuilder: (context, animation, secondaryAnimation) =>
@@ -56,6 +56,15 @@ class _ScreenState extends State<Screen> {
                       child);
                 },
               ));
+          if (result == true) {
+            setState(() {
+              final snackBar = SnackBar(
+                backgroundColor: Colors.green,
+                content: Text('プロフィールを編集しました'),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            });
+          }
         },
         child: Icon(
           Icons.mode_comment,

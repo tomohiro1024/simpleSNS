@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_sns/model/account.dart';
@@ -20,13 +21,13 @@ class _AccountPageState extends State<AccountPage> {
       id: '1',
       content: '初めての投稿',
       postAccountId: '1',
-      createdTime: DateTime.now(),
+      createdTime: Timestamp.now(),
     ),
     Post(
       id: '2',
       content: 'よろしく！',
       postAccountId: '1',
-      createdTime: DateTime.now(),
+      createdTime: Timestamp.now(),
     ),
   ];
 
@@ -202,7 +203,8 @@ class _AccountPageState extends State<AccountPage> {
                                               const EdgeInsets.only(left: 20.0),
                                           child: Text(DateFormat('M/d/yy')
                                               .format(postList[index]
-                                                  .createdTime!)),
+                                                  .createdTime!
+                                                  .toDate())),
                                         )
                                       ],
                                     ),

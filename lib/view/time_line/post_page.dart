@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simple_sns/model/post.dart';
+import 'package:simple_sns/utils/authentication.dart';
+import 'package:simple_sns/utils/firestore/posts.dart';
 
 class PostPage extends StatefulWidget {
   const PostPage({Key? key}) : super(key: key);
@@ -30,7 +33,18 @@ class _PostPageState extends State<PostPage> {
               height: 30,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                if (contentController.text.isNotEmpty) {
+                  Post newPost = Post(
+                    content: contentController.text,
+                    postAccountId: Authentication.myAccount!.id,
+                  );
+                  var result = await PostsFirestore.addPost(newPost);
+                  if (result == true) {
+                    Navigator.pop(context);
+                  }
+                }
+              },
               child: Text(
                 'Post',
                 style: TextStyle(

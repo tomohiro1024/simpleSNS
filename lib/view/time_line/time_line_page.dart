@@ -28,13 +28,13 @@ class _TimeLinePageState extends State<TimeLinePage> {
       id: '1',
       content: '初めての投稿',
       postAccountId: '1',
-      createdTime: DateTime.now(),
+      createdTime: Timestamp.now(),
     ),
     Post(
       id: '2',
       content: 'よろしく！',
       postAccountId: '1',
-      createdTime: DateTime.now(),
+      createdTime: Timestamp.now(),
     ),
   ];
 
@@ -98,8 +98,8 @@ class _TimeLinePageState extends State<TimeLinePage> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 20.0),
-                              child: Text(DateFormat('M/d/yy')
-                                  .format(postList[index].createdTime!)),
+                              child: Text(DateFormat('M/d/yy').format(
+                                  postList[index].createdTime!.toDate())),
                             )
                           ],
                         ),
