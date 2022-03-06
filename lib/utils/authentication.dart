@@ -34,4 +34,9 @@ class Authentication {
       return false;
     }
   }
+
+  // ログアウト
+  static Future<void> signOut() async {
+    await _firebaseAuth.signOut();
+  }
 }

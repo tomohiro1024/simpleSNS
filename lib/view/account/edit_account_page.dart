@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:simple_sns/model/account.dart';
 import 'package:simple_sns/utils/authentication.dart';
 import 'package:simple_sns/utils/firestore/users.dart';
-import 'package:simple_sns/utils/widget_utils.dart';
+import 'package:simple_sns/view/start_up/login_page.dart';
 
 class EditAccountPage extends StatefulWidget {
   const EditAccountPage({Key? key}) : super(key: key);
@@ -65,7 +65,31 @@ class _EditAccountPageState extends State<EditAccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: WidgetUtils.createAppBar('Edit Page'),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.pinkAccent),
+        backgroundColor: Colors.cyan,
+        title: Text('Edit Page', style: TextStyle(color: Colors.pinkAccent)),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Authentication.signOut();
+              while (Navigator.canPop(context)) {
+                Navigator.pop(context);
+              }
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(),
+                  ));
+            },
+            icon: Icon(
+              Icons.logout,
+              color: Colors.pinkAccent,
+              size: 30,
+            ),
+          )
+        ],
+      ),
       body: SingleChildScrollView(
         child: Container(
           width: double.infinity,
@@ -152,7 +176,7 @@ class _EditAccountPageState extends State<EditAccountPage> {
                 style: ElevatedButton.styleFrom(
                   primary: Colors.cyan, //ボタンの背景色
                 ),
-              )
+              ),
             ],
           ),
         ),
