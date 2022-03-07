@@ -87,6 +87,24 @@ class _EditAccountPageState extends State<EditAccountPage> {
               color: Colors.pinkAccent,
               size: 30,
             ),
+          ),
+          IconButton(
+            onPressed: () {
+              Authentication.signOut();
+              while (Navigator.canPop(context)) {
+                Navigator.pop(context);
+              }
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(),
+                  ));
+            },
+            icon: Icon(
+              Icons.delete,
+              color: Colors.pinkAccent,
+              size: 30,
+            ),
           )
         ],
       ),
