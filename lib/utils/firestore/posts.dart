@@ -19,7 +19,8 @@ class PostsFirestore {
       var result = await posts.add({
         'content': newPost.content,
         'post_account_id': newPost.postAccountId,
-        'created_time': Timestamp.now()
+        'created_time': Timestamp.now(),
+        'image_post': newPost.imagePost
       });
 
       _userPosts.doc(result.id).set({
@@ -45,6 +46,7 @@ class PostsFirestore {
           content: data['content'],
           postAccountId: data['post_account_id'],
           createdTime: data['created_time'],
+          imagePost: data['image_post'],
         );
         postList.add(post);
       });

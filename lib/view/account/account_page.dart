@@ -235,6 +235,15 @@ class _AccountPageState extends State<AccountPage> {
                                                       height: 5,
                                                     ),
                                                     Text(post.content),
+                                                    Container(
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                        child: Image.network(
+                                                            post.imagePost),
+                                                      ),
+                                                    ),
                                                   ],
                                                 ),
                                               ),
