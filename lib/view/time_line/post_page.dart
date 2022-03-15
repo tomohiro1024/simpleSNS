@@ -40,6 +40,7 @@ class _PostPageState extends State<PostPage> {
   }
 
   // 画像をストレージにアップロード
+  // 引数をuidではなくpostのid(ランダムID)にする。
   Future<String> uploadImage(String uid) async {
     final FirebaseStorage storageInstance = FirebaseStorage.instance;
     final Reference ref = storageInstance.ref();
@@ -93,6 +94,9 @@ class _PostPageState extends State<PostPage> {
               ElevatedButton(
                 onPressed: () async {
                   if (contentController.text.isNotEmpty && image != null) {
+                    // uploadImage()の引数をpost_idにしたい
+                    // idの確保
+                    // id uuidを使用して取得、ドキュメンと新規作成
                     String imagePost = await uploadImage(myAccount.id);
                     Post newPost = Post(
                         content: contentController.text,
