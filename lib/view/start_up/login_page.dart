@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 70,
                 ),
                 Text(
-                  'シンプル写真投稿SNS',
+                  'シンプルSNS',
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
