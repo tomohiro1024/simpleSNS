@@ -54,7 +54,6 @@ class _TimeLinePageState extends State<TimeLinePage> {
                             content: data['content'],
                             postAccountId: data['post_account_id'],
                             createdTime: data['created_time'],
-                            imagePost: data['image_post'],
                           );
                           Account postAccount =
                               userSnapshot.data![post.postAccountId]!;
@@ -132,14 +131,6 @@ class _TimeLinePageState extends State<TimeLinePage> {
                                           height: 5,
                                         ),
                                         Text(post.content),
-                                        Container(
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child:
-                                                Image.network(post.imagePost),
-                                          ),
-                                        ),
                                       ],
                                     ),
                                   ),
