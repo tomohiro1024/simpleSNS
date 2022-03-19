@@ -122,8 +122,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               Container(
                 width: 250,
                 child: TextField(
+                  obscureText: true,
+                  obscuringCharacter: '*',
                   controller: passwordController,
-                  decoration: InputDecoration(hintText: 'Password'),
+                  decoration: InputDecoration(hintText: 'Password(6文字以上)'),
                 ),
               ),
               SizedBox(height: 30),
