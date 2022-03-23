@@ -137,6 +137,13 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                       emailController.text.isNotEmpty &&
                       passwordController.text.isNotEmpty &&
                       image != null) {
+                    if (passwordController.text.length < 6) {
+                      final snackBar = SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text('パスワードは6文字以上を入力してください'),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
                     // アカウントの認証
                     var result = await Authentication.signUp(
                         email: emailController.text,
@@ -151,8 +158,8 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         selfIntroduction: serfIntroductionController.text,
                         imagePath: imagePath,
                       );
-                      var _result = await UserFirestore.setUser(newAccount);
-                      if (_result == true) {
+                      var results = await UserFirestore.setUser(newAccount);
+                      if (results == true) {
                         Navigator.pop(context);
                       }
                     }

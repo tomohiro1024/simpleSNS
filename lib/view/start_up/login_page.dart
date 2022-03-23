@@ -68,8 +68,8 @@ class _LoginPageState extends State<LoginPage> {
                             decoration: TextDecoration.underline,
                           ),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.push(
+                            ..onTap = () async {
+                              var results = await Navigator.push(
                                   context,
                                   PageRouteBuilder(
                                     pageBuilder: (context, animation,
@@ -88,6 +88,17 @@ class _LoginPageState extends State<LoginPage> {
                                               child);
                                     },
                                   ));
+                              if (results == true) {
+                                setState(() {
+                                  final snackBar = SnackBar(
+                                    backgroundColor: Colors.green,
+                                    content: Text('プロフィールを編集しました'),
+                                  );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                });
+                              }
+                              ;
                             }),
                     ],
                   ),
