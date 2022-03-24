@@ -224,7 +224,7 @@ class _AccountPageState extends State<AccountPage> {
                                                                       .only(
                                                                   left: 20.0),
                                                           child: Text(DateFormat(
-                                                                  'M/d/yy')
+                                                                  'M/d')
                                                               .format(post
                                                                   .createdTime!
                                                                   .toDate())),
