@@ -45,7 +45,7 @@ class _PostPageState extends State<PostPage> {
                     );
                     var result = await PostsFirestore.addPost(newPost);
                     if (result == true) {
-                      Navigator.pop(context);
+                      Navigator.pop(context, true);
                     }
                   } else {
                     final snackBar = SnackBar(

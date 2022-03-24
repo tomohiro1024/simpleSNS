@@ -59,8 +59,8 @@ class _ScreenState extends State<Screen> {
           if (result == true) {
             setState(() {
               final snackBar = SnackBar(
-                backgroundColor: Colors.green,
-                content: Text('プロフィールを編集しました'),
+                backgroundColor: Colors.blue,
+                content: Text('コメントを投稿しました'),
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             });
