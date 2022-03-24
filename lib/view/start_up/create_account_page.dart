@@ -160,7 +160,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                       );
                       var results = await UserFirestore.setUser(newAccount);
                       if (results == true) {
-                        Navigator.pop(context);
+                        Navigator.pop(context, true);
                       }
                     }
                   } else {

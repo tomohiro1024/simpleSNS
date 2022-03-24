@@ -91,8 +91,8 @@ class _LoginPageState extends State<LoginPage> {
                               if (results == true) {
                                 setState(() {
                                   final snackBar = SnackBar(
-                                    backgroundColor: Colors.green,
-                                    content: Text('プロフィールを編集しました'),
+                                    backgroundColor: Colors.blue,
+                                    content: Text('アカウント登録完了しました'),
                                   );
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(snackBar);
