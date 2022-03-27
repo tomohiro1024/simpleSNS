@@ -47,12 +47,24 @@ class _AccountPageState extends State<AccountPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  myAccount.name,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.pinkAccent,
-                                      fontSize: 15),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 5),
+                                      child: Text(
+                                        myAccount.name,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.pinkAccent,
+                                            fontSize: 15),
+                                      ),
+                                    ),
+                                    Text(
+                                      '${myAccount.age}歳',
+                                      style:
+                                          TextStyle(color: Colors.cyanAccent),
+                                    ),
+                                  ],
                                 ),
                                 Text(
                                   '@${myAccount.userId}',
@@ -208,6 +220,18 @@ class _AccountPageState extends State<AccountPage> {
                                                                             .bold,
                                                                     color: Colors
                                                                         .pinkAccent),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      right: 5),
+                                                              child: Text(
+                                                                '${myAccount.age}歳',
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .cyanAccent),
                                                               ),
                                                             ),
                                                             Text(

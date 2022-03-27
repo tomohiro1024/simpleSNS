@@ -13,6 +13,7 @@ class UserFirestore {
       await users.doc(newAccount.id).set({
         'name': newAccount.name,
         'user_id': newAccount.userId,
+        'age': newAccount.age,
         'self_introduction': newAccount.selfIntroduction,
         'image_path': newAccount.imagePath,
         'created_time': Timestamp.now(),
@@ -35,6 +36,7 @@ class UserFirestore {
         id: uid,
         name: data['name'],
         userId: data['user_id'],
+        age: data['age'],
         selfIntroduction: data['self_introduction'],
         imagePath: data['image_path'],
         createdTime: data['created_time'],
@@ -54,6 +56,7 @@ class UserFirestore {
       await users.doc(updateAccount.id).update({
         'name': updateAccount.name,
         'user_id': updateAccount.userId,
+        'age': updateAccount.age,
         'self_introduction': updateAccount.selfIntroduction,
         'image_path': updateAccount.imagePath,
         'updated_time': Timestamp.now(),
@@ -77,6 +80,7 @@ class UserFirestore {
           id: accountId,
           name: data['name'],
           userId: data['user_id'],
+          age: data['age'],
           imagePath: data['image_path'],
           selfIntroduction: data['self_introduction'],
           createdTime: data['created_time'],

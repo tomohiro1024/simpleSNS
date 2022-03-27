@@ -111,6 +111,17 @@ class _TimeLinePageState extends State<TimeLinePage> {
                                                             Colors.pinkAccent),
                                                   ),
                                                 ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 5),
+                                                  child: Text(
+                                                    '${postAccount.age}歳',
+                                                    style: TextStyle(
+                                                        color:
+                                                            Colors.cyanAccent),
+                                                  ),
+                                                ),
                                                 Text(
                                                   '@${postAccount.userId}',
                                                   style: TextStyle(

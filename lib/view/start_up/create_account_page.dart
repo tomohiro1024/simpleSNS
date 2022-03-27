@@ -19,6 +19,7 @@ class CreateAccountPage extends StatefulWidget {
 class _CreateAccountPageState extends State<CreateAccountPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController userIdController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
   TextEditingController serfIntroductionController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -105,6 +106,14 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               Container(
                 width: 250,
                 child: TextField(
+                  keyboardType: TextInputType.number,
+                  controller: ageController,
+                  decoration: InputDecoration(hintText: 'age'),
+                ),
+              ),
+              Container(
+                width: 250,
+                child: TextField(
                   controller: serfIntroductionController,
                   decoration: InputDecoration(hintText: 'Comment'),
                 ),
@@ -133,6 +142,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 onPressed: () async {
                   if (nameController.text.isNotEmpty &&
                       userIdController.text.isNotEmpty &&
+                      ageController.text.isNotEmpty &&
                       serfIntroductionController.text.isNotEmpty &&
                       emailController.text.isNotEmpty &&
                       passwordController.text.isNotEmpty &&
@@ -155,6 +165,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         id: result.user!.uid,
                         name: nameController.text,
                         userId: userIdController.text,
+                        age: ageController.text,
                         selfIntroduction: serfIntroductionController.text,
                         imagePath: imagePath,
                       );

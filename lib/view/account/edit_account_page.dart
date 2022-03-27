@@ -20,6 +20,7 @@ class _EditAccountPageState extends State<EditAccountPage> {
   Account myAccount = Authentication.myAccount!;
   TextEditingController nameController = TextEditingController();
   TextEditingController userIdController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
   TextEditingController serfIntroductionController = TextEditingController();
   File? image;
   ImagePicker picker = ImagePicker();
@@ -38,6 +39,7 @@ class _EditAccountPageState extends State<EditAccountPage> {
     super.initState();
     nameController = TextEditingController(text: myAccount.name);
     userIdController = TextEditingController(text: myAccount.userId);
+    ageController = TextEditingController(text: myAccount.age);
     serfIntroductionController =
         TextEditingController(text: myAccount.selfIntroduction);
   }
@@ -137,6 +139,14 @@ class _EditAccountPageState extends State<EditAccountPage> {
               Container(
                 width: 250,
                 child: TextField(
+                  keyboardType: TextInputType.number,
+                  controller: ageController,
+                  decoration: InputDecoration(hintText: 'age'),
+                ),
+              ),
+              Container(
+                width: 250,
+                child: TextField(
                   controller: serfIntroductionController,
                   decoration: InputDecoration(hintText: 'Comment'),
                 ),
@@ -146,6 +156,7 @@ class _EditAccountPageState extends State<EditAccountPage> {
                 onPressed: () async {
                   if (nameController.text.isNotEmpty &&
                       userIdController.text.isNotEmpty &&
+                      ageController.text.isNotEmpty &&
                       serfIntroductionController.text.isNotEmpty) {
                     String imagePath = '';
                     if (image == null) {
@@ -157,6 +168,7 @@ class _EditAccountPageState extends State<EditAccountPage> {
                     Account updateAccount = Account(
                       id: myAccount.id,
                       name: nameController.text,
+                      age: ageController.text,
                       userId: userIdController.text,
                       selfIntroduction: serfIntroductionController.text,
                       imagePath: imagePath,
