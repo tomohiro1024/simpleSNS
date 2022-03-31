@@ -25,6 +25,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   TextEditingController emailController = TextEditingController();
   File? image;
   ImagePicker picker = ImagePicker();
+  String? isSelectedItem = '性別';
 
   ImageProvider getImage() {
     if (image == null) {
@@ -93,7 +94,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Container(
                   width: 250,
                   child: TextField(
@@ -111,15 +112,42 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   decoration: InputDecoration(hintText: 'age'),
                 ),
               ),
-              Container(
-                width: 250,
-                child: TextField(
-                  controller: serfIntroductionController,
-                  decoration: InputDecoration(hintText: 'Comment'),
+              // DropdownButton(
+              //   items: const [
+              //     //5
+              //     DropdownMenuItem(
+              //       child: Text('男性'),
+              //       value: '男性',
+              //     ),
+              //     DropdownMenuItem(
+              //       child: Text('女性'),
+              //       value: '女性',
+              //     ),
+              //   ],
+              //   onChanged: (String? value) {
+              //     if (value == null) {
+              //       Container();
+              //     }
+              //     setState(
+              //       () {
+              //         isSelectedItem = value;
+              //       },
+              //     );
+              //   },
+              //   value: isSelectedItem,
+              // ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Container(
+                  width: 250,
+                  child: TextField(
+                    controller: serfIntroductionController,
+                    decoration: InputDecoration(hintText: 'Comment'),
+                  ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Container(
                   width: 250,
                   child: TextField(

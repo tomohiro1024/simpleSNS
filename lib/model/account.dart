@@ -7,6 +7,7 @@ class Account {
   String selfIntroduction;
   String userId;
   String age;
+  String gender;
   Timestamp? createdTime;
   Timestamp? updatedTime;
 
@@ -17,6 +18,7 @@ class Account {
       this.selfIntroduction = '',
       this.userId = '',
       this.age = '',
+      this.gender = '',
       this.createdTime,
       this.updatedTime});
 }
