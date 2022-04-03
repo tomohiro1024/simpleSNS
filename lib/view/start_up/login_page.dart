@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_sns/utils/authentication.dart';
 import 'package:simple_sns/utils/firestore/users.dart';
@@ -55,89 +54,94 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(hintText: 'Password'),
                   ),
                 ),
-                SizedBox(height: 15),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(color: Colors.black87),
-                    children: [
-                      TextSpan(text: 'アカウントを持ってない方は'),
-                      TextSpan(
-                          text: 'こちら',
-                          style: TextStyle(
-                            color: Colors.pinkAccent,
-                            decoration: TextDecoration.underline,
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () async {
-                              var results = await Navigator.push(
-                                  context,
-                                  PageRouteBuilder(
-                                    pageBuilder: (context, animation,
-                                            secondaryAnimation) =>
-                                        CreateAccountPage(),
-                                    transitionsBuilder: (context, animation,
-                                        secondaryAnimation, child) {
-                                      return FadeUpwardsPageTransitionsBuilder()
-                                          .buildTransitions(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      CreateAccountPage()),
-                                              context,
-                                              animation,
-                                              secondaryAnimation,
-                                              child);
-                                    },
-                                  ));
-                              if (results == true) {
-                                setState(() {
-                                  final snackBar = SnackBar(
-                                    backgroundColor: Colors.blue,
-                                    content: Text('アカウント登録完了しました'),
-                                  );
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(snackBar);
-                                });
-                              }
-                              ;
-                            }),
-                    ],
+                SizedBox(height: 40),
+                SizedBox(
+                  width: 150,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      var results = await Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    CreateAccountPage(),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              return FadeUpwardsPageTransitionsBuilder()
+                                  .buildTransitions(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              CreateAccountPage()),
+                                      context,
+                                      animation,
+                                      secondaryAnimation,
+                                      child);
+                            },
+                          ));
+                      if (results == true) {
+                        setState(() {
+                          final snackBar = SnackBar(
+                            backgroundColor: Colors.blue,
+                            content: Text('アカウント登録完了しました'),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        });
+                      }
+                    },
+                    child: Text(
+                      '新規登録',
+                      style: TextStyle(
+                          color: Colors.pinkAccent,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.cyan, //ボタンの背景色
+                    ),
                   ),
                 ),
-                SizedBox(height: 50),
-                ElevatedButton(
-                  onPressed: () async {
-                    if (emailController.text.isNotEmpty &&
-                        passwordController.text.isNotEmpty) {
-                      var result = await Authentication.emailSignIn(
-                          email: emailController.text,
-                          pass: passwordController.text);
-                      if (result is UserCredential) {
-                        var _result =
-                            await UserFirestore.getUser(result.user!.uid);
-                        if (_result == true) {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Screen()));
+                SizedBox(height: 20),
+                SizedBox(
+                  width: 150,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      if (emailController.text.isNotEmpty &&
+                          passwordController.text.isNotEmpty) {
+                        var result = await Authentication.emailSignIn(
+                            email: emailController.text,
+                            pass: passwordController.text);
+                        if (result is UserCredential) {
+                          var _result =
+                              await UserFirestore.getUser(result.user!.uid);
+                          if (_result == true) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Screen()));
+                          }
+                        } else {
+                          final snackBar = SnackBar(
+                            backgroundColor: Colors.red,
+                            content: Text('Eメールもしくはパスワードが間違っています'),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
                       } else {
                         final snackBar = SnackBar(
                           backgroundColor: Colors.red,
-                          content: Text('Eメールもしくはパスワードが間違っています'),
+                          content: Text('Eメールもしくはパスワードを入力してください'),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       }
-                    } else {
-                      final snackBar = SnackBar(
-                        backgroundColor: Colors.red,
-                        content: Text('Eメールもしくはパスワードを入力してください'),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }
-                  },
-                  child: Text('Emailでログイン'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.cyan, //ボタンの背景色
+                    },
+                    child: Text(
+                      'ログイン',
+                      style: TextStyle(
+                          color: Colors.pinkAccent,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.cyan, //ボタンの背景色
+                    ),
                   ),
                 )
               ],
