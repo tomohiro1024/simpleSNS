@@ -28,13 +28,23 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 70,
                 ),
-                Text(
-                  'シンプルSNS',
-                  style: TextStyle(
-                      fontSize: 25,
+                RichText(
+                    text: TextSpan(children: [
+                  TextSpan(
+                      text: 'シンプル',
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.cyan)),
+                  TextSpan(
+                    text: 'SNS',
+                    style: TextStyle(
+                      color: Colors.pinkAccent,
+                      fontSize: 35,
                       fontWeight: FontWeight.bold,
-                      color: Colors.cyan),
-                ),
+                    ),
+                  ),
+                ])),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 25.0),
                   child: Container(
