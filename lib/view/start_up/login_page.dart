@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             SizedBox(
-              height: 70,
+              height: 40,
             ),
             RichText(
                 text: TextSpan(children: [
@@ -51,68 +51,37 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ])),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 25.0),
+              padding: const EdgeInsets.symmetric(vertical: 24.0),
               child: Container(
-                width: 250,
+                width: 270,
                 child: TextField(
                   controller: emailController,
-                  decoration: InputDecoration(hintText: 'Email'),
+                  decoration: InputDecoration(
+                      hintText: 'Email',
+                      filled: true,
+                      fillColor: Colors.black12,
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(color: Colors.cyanAccent))),
                 ),
               ),
             ),
             Container(
-              width: 250,
+              width: 270,
               child: TextField(
                 obscureText: true,
                 obscuringCharacter: '*',
                 controller: passwordController,
-                decoration: InputDecoration(hintText: 'Password'),
+                decoration: InputDecoration(
+                    hintText: 'Password',
+                    filled: true,
+                    fillColor: Colors.black12,
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(color: Colors.cyanAccent))),
               ),
             ),
-            SizedBox(height: 40),
-            SizedBox(
-              width: 150,
-              child: ElevatedButton(
-                onPressed: () async {
-                  var results = await Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) =>
-                            CreateAccountPage(),
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          return FadeUpwardsPageTransitionsBuilder()
-                              .buildTransitions(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          CreateAccountPage()),
-                                  context,
-                                  animation,
-                                  secondaryAnimation,
-                                  child);
-                        },
-                      ));
-                  if (results == true) {
-                    setState(() {
-                      final snackBar = SnackBar(
-                        backgroundColor: Colors.blue,
-                        content: Text('アカウント登録完了しました'),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    });
-                  }
-                },
-                child: Text(
-                  '新規登録',
-                  style: TextStyle(
-                      color: Colors.pinkAccent, fontWeight: FontWeight.bold),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.cyan, //ボタンの背景色
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
             SizedBox(
               width: 150,
               child: ElevatedButton(
@@ -155,7 +124,50 @@ class _LoginPageState extends State<LoginPage> {
                   primary: Colors.cyan, //ボタンの背景色
                 ),
               ),
-            )
+            ),
+            SizedBox(height: 15),
+            SizedBox(
+              width: 150,
+              child: ElevatedButton(
+                onPressed: () async {
+                  var results = await Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            CreateAccountPage(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          return FadeUpwardsPageTransitionsBuilder()
+                              .buildTransitions(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          CreateAccountPage()),
+                                  context,
+                                  animation,
+                                  secondaryAnimation,
+                                  child);
+                        },
+                      ));
+                  if (results == true) {
+                    setState(() {
+                      final snackBar = SnackBar(
+                        backgroundColor: Colors.blue,
+                        content: Text('アカウント登録完了しました'),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    });
+                  }
+                },
+                child: Text(
+                  '新規登録',
+                  style: TextStyle(
+                      color: Colors.pinkAccent, fontWeight: FontWeight.bold),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.cyan, //ボタンの背景色
+                ),
+              ),
+            ),
           ],
         ),
       ),

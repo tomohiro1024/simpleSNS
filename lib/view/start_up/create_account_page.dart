@@ -112,30 +112,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   decoration: InputDecoration(hintText: 'age'),
                 ),
               ),
-              // DropdownButton(
-              //   items: const [
-              //     //5
-              //     DropdownMenuItem(
-              //       child: Text('男性'),
-              //       value: '男性',
-              //     ),
-              //     DropdownMenuItem(
-              //       child: Text('女性'),
-              //       value: '女性',
-              //     ),
-              //   ],
-              //   onChanged: (String? value) {
-              //     if (value == null) {
-              //       Container();
-              //     }
-              //     setState(
-              //       () {
-              //         isSelectedItem = value;
-              //       },
-              //     );
-              //   },
-              //   value: isSelectedItem,
-              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Container(
