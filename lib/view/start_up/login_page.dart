@@ -94,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 30),
             SizedBox(
               width: 150,
-              child: ElevatedButton(
+              child: ElevatedButton.icon(
                 onPressed: () async {
                   if (emailController.text.isNotEmpty &&
                       passwordController.text.isNotEmpty) {
@@ -125,20 +125,24 @@ class _LoginPageState extends State<LoginPage> {
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
                 },
-                child: Text(
+                icon: Icon(Icons.login),
+                label: Text(
                   'ログイン',
                   style: TextStyle(
                       color: Colors.pinkAccent, fontWeight: FontWeight.bold),
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.cyan, //ボタンの背景色
+                  primary: Colors.cyan,
+                  onPrimary: Colors.pinkAccent,
+                  shape: StadiumBorder(),
+                  elevation: 10, //ボタンの背景色
                 ),
               ),
             ),
             SizedBox(height: 15),
             SizedBox(
               width: 150,
-              child: ElevatedButton(
+              child: ElevatedButton.icon(
                 onPressed: () async {
                   var results = await Navigator.push(
                       context,
@@ -168,13 +172,17 @@ class _LoginPageState extends State<LoginPage> {
                     });
                   }
                 },
-                child: Text(
+                icon: Icon(Icons.person),
+                label: Text(
                   '新規登録',
                   style: TextStyle(
                       color: Colors.pinkAccent, fontWeight: FontWeight.bold),
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.cyan, //ボタンの背景色
+                  primary: Colors.cyan,
+                  onPrimary: Colors.pinkAccent,
+                  shape: StadiumBorder(),
+                  elevation: 10, //ボタンの背景色
                 ),
               ),
             ),
