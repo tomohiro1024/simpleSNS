@@ -57,12 +57,18 @@ class _LoginPageState extends State<LoginPage> {
                 child: TextField(
                   controller: emailController,
                   decoration: InputDecoration(
-                      hintText: 'Email',
-                      filled: true,
-                      fillColor: Colors.black12,
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide(color: Colors.cyanAccent))),
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: Colors.cyan,
+                    ),
+                    hintText: 'Email',
+                    filled: true,
+                    fillColor: Colors.cyanAccent.withOpacity(0.1),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide(color: Colors.cyan),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -73,12 +79,16 @@ class _LoginPageState extends State<LoginPage> {
                 obscuringCharacter: '*',
                 controller: passwordController,
                 decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: Colors.cyan,
+                    ),
                     hintText: 'Password',
                     filled: true,
-                    fillColor: Colors.black12,
+                    fillColor: Colors.cyanAccent.withOpacity(0.1),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(color: Colors.cyanAccent))),
+                        borderSide: BorderSide(color: Colors.cyan))),
               ),
             ),
             SizedBox(height: 30),
