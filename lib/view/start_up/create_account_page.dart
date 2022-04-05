@@ -60,141 +60,199 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: WidgetUtils.createAppBar('SignUp'),
-      body: SingleChildScrollView(
-        child: Container(
-          width: double.infinity,
-          child: Column(
-            children: [
-              SizedBox(height: 40),
-              GestureDetector(
-                onTap: () async {
-                  await getImageFromGallery();
-                },
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    CircleAvatar(
-                      foregroundImage: getImage(),
-                      backgroundColor: Colors.cyan,
-                      radius: 70,
-                    ),
-                    Icon(
-                      Icons.add_a_photo,
-                      color: Colors.pinkAccent,
-                    ),
-                  ],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: NetworkImage(
+                  'https://cdn.pixabay.com/photo/2021/07/15/05/06/flowers-6467492_1280.jpg'),
+              fit: BoxFit.cover),
+        ),
+        child: SingleChildScrollView(
+          child: Container(
+            width: double.infinity,
+            child: Column(
+              children: [
+                SizedBox(height: 40),
+                GestureDetector(
+                  onTap: () async {
+                    await getImageFromGallery();
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      CircleAvatar(
+                        foregroundImage: getImage(),
+                        backgroundColor: Colors.cyan,
+                        radius: 70,
+                      ),
+                      Icon(
+                        Icons.add_a_photo,
+                        color: Colors.pinkAccent,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                width: 250,
-                child: TextField(
-                  maxLength: 10,
-                  controller: nameController,
-                  decoration: InputDecoration(hintText: 'Name'),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Container(
+                SizedBox(height: 20),
+                Container(
                   width: 250,
                   child: TextField(
                     maxLength: 10,
-                    controller: userIdController,
-                    decoration: InputDecoration(hintText: 'User ID'),
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      hintText: 'Name',
+                      filled: true,
+                      fillColor: Colors.cyanAccent.withOpacity(0.1),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(color: Colors.pinkAccent),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                width: 250,
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  controller: ageController,
-                  decoration: InputDecoration(hintText: 'age'),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Container(
+                    width: 250,
+                    child: TextField(
+                      maxLength: 10,
+                      controller: userIdController,
+                      decoration: InputDecoration(
+                        hintText: 'User ID',
+                        filled: true,
+                        fillColor: Colors.cyanAccent.withOpacity(0.1),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(color: Colors.pinkAccent),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Container(
+                Container(
                   width: 250,
                   child: TextField(
-                    controller: serfIntroductionController,
-                    decoration: InputDecoration(hintText: 'Comment'),
+                    maxLength: 2,
+                    keyboardType: TextInputType.number,
+                    controller: ageController,
+                    decoration: InputDecoration(
+                      hintText: 'age',
+                      filled: true,
+                      fillColor: Colors.cyanAccent.withOpacity(0.1),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(color: Colors.pinkAccent),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Container(
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Container(
+                    width: 250,
+                    child: TextField(
+                      controller: serfIntroductionController,
+                      decoration: InputDecoration(
+                        hintText: 'Comment',
+                        filled: true,
+                        fillColor: Colors.cyanAccent.withOpacity(0.1),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(color: Colors.pinkAccent),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Container(
+                    width: 250,
+                    child: TextField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        hintText: 'Email',
+                        filled: true,
+                        fillColor: Colors.cyanAccent.withOpacity(0.1),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(color: Colors.pinkAccent),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
                   width: 250,
                   child: TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(hintText: 'Email'),
+                    obscureText: true,
+                    obscuringCharacter: '*',
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      hintText: 'Password(6文字以上)',
+                      filled: true,
+                      fillColor: Colors.cyanAccent.withOpacity(0.1),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(color: Colors.pinkAccent),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                width: 250,
-                child: TextField(
-                  obscureText: true,
-                  obscuringCharacter: '*',
-                  controller: passwordController,
-                  decoration: InputDecoration(hintText: 'Password(6文字以上)'),
-                ),
-              ),
-              SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () async {
-                  if (nameController.text.isNotEmpty &&
-                      userIdController.text.isNotEmpty &&
-                      ageController.text.isNotEmpty &&
-                      serfIntroductionController.text.isNotEmpty &&
-                      emailController.text.isNotEmpty &&
-                      passwordController.text.isNotEmpty &&
-                      image != null) {
-                    if (passwordController.text.length < 6) {
+                SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: () async {
+                    if (nameController.text.isNotEmpty &&
+                        userIdController.text.isNotEmpty &&
+                        ageController.text.isNotEmpty &&
+                        serfIntroductionController.text.isNotEmpty &&
+                        emailController.text.isNotEmpty &&
+                        passwordController.text.isNotEmpty &&
+                        image != null) {
+                      if (passwordController.text.length < 6) {
+                        final snackBar = SnackBar(
+                          backgroundColor: Colors.red,
+                          content: Text('パスワードは6文字以上を入力してください'),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                      // アカウントの認証
+                      var result = await Authentication.signUp(
+                          email: emailController.text,
+                          pass: passwordController.text);
+                      // 認証が成功した場合
+                      if (result is UserCredential) {
+                        String imagePath = await uploadImage(result.user!.uid);
+                        Account newAccount = Account(
+                          id: result.user!.uid,
+                          name: nameController.text,
+                          userId: userIdController.text,
+                          age: ageController.text,
+                          selfIntroduction: serfIntroductionController.text,
+                          imagePath: imagePath,
+                        );
+                        var results = await UserFirestore.setUser(newAccount);
+                        if (results == true) {
+                          Navigator.pop(context, true);
+                        }
+                      }
+                    } else {
                       final snackBar = SnackBar(
                         backgroundColor: Colors.red,
-                        content: Text('パスワードは6文字以上を入力してください'),
+                        content: Text('全ての項目を入力してください'),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     }
-                    // アカウントの認証
-                    var result = await Authentication.signUp(
-                        email: emailController.text,
-                        pass: passwordController.text);
-                    // 認証が成功した場合
-                    if (result is UserCredential) {
-                      String imagePath = await uploadImage(result.user!.uid);
-                      Account newAccount = Account(
-                        id: result.user!.uid,
-                        name: nameController.text,
-                        userId: userIdController.text,
-                        age: ageController.text,
-                        selfIntroduction: serfIntroductionController.text,
-                        imagePath: imagePath,
-                      );
-                      var results = await UserFirestore.setUser(newAccount);
-                      if (results == true) {
-                        Navigator.pop(context, true);
-                      }
-                    }
-                  } else {
-                    final snackBar = SnackBar(
-                      backgroundColor: Colors.red,
-                      content: Text('全ての項目を入力してください'),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
-                },
-                child: Text(
-                  'Created an Account',
-                  style: TextStyle(color: Colors.pinkAccent),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.cyan, //ボタンの背景色
-                ),
-              )
-            ],
+                  },
+                  child: Text(
+                    'Created an Account',
+                    style: TextStyle(color: Colors.pinkAccent),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan, //ボタンの背景色
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
