@@ -61,8 +61,7 @@ class _AccountPageState extends State<AccountPage> {
                                     ),
                                     Text(
                                       '${myAccount.age}歳',
-                                      style:
-                                          TextStyle(color: Colors.cyanAccent),
+                                      style: TextStyle(color: Colors.cyan),
                                     ),
                                   ],
                                 ),
@@ -111,7 +110,10 @@ class _AccountPageState extends State<AccountPage> {
                               style: TextStyle(color: Colors.pinkAccent),
                             ),
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.cyan, //ボタンの背景色
+                              primary: Colors.cyan,
+                              onPrimary: Colors.pinkAccent,
+                              shape: StadiumBorder(),
+                              elevation: 10,
                             ),
                           ),
                         ],
@@ -231,7 +233,7 @@ class _AccountPageState extends State<AccountPage> {
                                                                 '${myAccount.age}歳',
                                                                 style: TextStyle(
                                                                     color: Colors
-                                                                        .cyanAccent),
+                                                                        .cyan),
                                                               ),
                                                             ),
                                                             Text(

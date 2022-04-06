@@ -33,9 +33,17 @@ class _PostPageState extends State<PostPage> {
             children: [
               TextField(
                 controller: contentController,
-                decoration: InputDecoration(hintText: 'Comment'),
+                decoration: InputDecoration(
+                  hintText: 'Comment',
+                  filled: true,
+                  fillColor: Colors.cyanAccent.withOpacity(0.1),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide(color: Colors.pinkAccent),
+                  ),
+                ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 25),
               ElevatedButton(
                 onPressed: () async {
                   if (contentController.text.isNotEmpty) {
@@ -62,7 +70,12 @@ class _PostPageState extends State<PostPage> {
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
                 ),
-                style: ElevatedButton.styleFrom(primary: Colors.cyan),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.cyan,
+                  onPrimary: Colors.pinkAccent,
+                  shape: StadiumBorder(),
+                  elevation: 10,
+                ),
               )
             ],
           ),

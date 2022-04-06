@@ -118,8 +118,7 @@ class _TimeLinePageState extends State<TimeLinePage> {
                                                   child: Text(
                                                     '${postAccount.age}歳',
                                                     style: TextStyle(
-                                                        color:
-                                                            Colors.cyanAccent),
+                                                        color: Colors.cyan),
                                                   ),
                                                 ),
                                                 Text(
