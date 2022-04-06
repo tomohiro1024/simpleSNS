@@ -94,7 +94,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 ),
                 SizedBox(height: 20),
                 Container(
-                  width: 250,
+                  width: 270,
                   child: TextField(
                     maxLength: 10,
                     controller: nameController,
@@ -112,7 +112,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Container(
-                    width: 250,
+                    width: 270,
                     child: TextField(
                       maxLength: 10,
                       controller: userIdController,
@@ -129,7 +129,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   ),
                 ),
                 Container(
-                  width: 250,
+                  width: 270,
                   child: TextField(
                     maxLength: 2,
                     keyboardType: TextInputType.number,
@@ -148,7 +148,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Container(
-                    width: 250,
+                    width: 270,
                     child: TextField(
                       controller: serfIntroductionController,
                       decoration: InputDecoration(
@@ -163,10 +163,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     ),
                   ),
                 ),
+                SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Container(
-                    width: 250,
+                    width: 270,
                     child: TextField(
                       controller: emailController,
                       decoration: InputDecoration(
@@ -181,8 +182,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     ),
                   ),
                 ),
+                SizedBox(height: 15),
                 Container(
-                  width: 250,
+                  width: 270,
                   child: TextField(
                     obscureText: true,
                     obscuringCharacter: '*',
@@ -248,7 +250,14 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     style: TextStyle(color: Colors.pinkAccent),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.cyan, //ボタンの背景色
+                    primary: Colors.cyan,
+                    onPrimary: Colors.pinkAccent,
+                    shape: StadiumBorder(),
+                    elevation: 10,
+                    side: BorderSide(
+                      color: Colors.pinkAccent,
+                      width: 1,
+                    ),
                   ),
                 )
               ],

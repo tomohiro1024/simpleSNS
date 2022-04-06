@@ -135,7 +135,11 @@ class _LoginPageState extends State<LoginPage> {
                   primary: Colors.cyan,
                   onPrimary: Colors.pinkAccent,
                   shape: StadiumBorder(),
-                  elevation: 10, //ボタンの背景色
+                  elevation: 10,
+                  side: BorderSide(
+                    color: Colors.blue,
+                    width: 1,
+                  ),
                 ),
               ),
             ),
@@ -182,7 +186,11 @@ class _LoginPageState extends State<LoginPage> {
                   primary: Colors.cyan,
                   onPrimary: Colors.pinkAccent,
                   shape: StadiumBorder(),
-                  elevation: 10, //ボタンの背景色
+                  elevation: 10,
+                  side: BorderSide(
+                    color: Colors.blue,
+                    width: 1,
+                  ), //ボタンの背景色
                 ),
               ),
             ),
