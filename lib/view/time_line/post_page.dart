@@ -34,17 +34,17 @@ class _PostPageState extends State<PostPage> {
               TextField(
                 controller: contentController,
                 decoration: InputDecoration(
-                  hintText: 'Comment',
+                  hintText: '今何をしている？',
                   filled: true,
                   fillColor: Colors.cyanAccent.withOpacity(0.1),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.pinkAccent),
+                    borderSide: BorderSide(color: Colors.blueAccent),
                   ),
                 ),
               ),
               SizedBox(height: 25),
-              ElevatedButton(
+              ElevatedButton.icon(
                 onPressed: () async {
                   if (contentController.text.isNotEmpty) {
                     Post newPost = Post(
@@ -63,7 +63,8 @@ class _PostPageState extends State<PostPage> {
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
                 },
-                child: Text(
+                icon: Icon(Icons.send),
+                label: Text(
                   'Post',
                   style: TextStyle(
                       color: Colors.pinkAccent,

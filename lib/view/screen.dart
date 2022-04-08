@@ -68,7 +68,7 @@ class _ScreenState extends State<Screen> {
         },
         child: Icon(
           Icons.mode_comment,
-          color: Colors.pinkAccent,
+          color: Colors.white,
         ),
       ),
     );
