@@ -114,6 +114,10 @@ class _AccountPageState extends State<AccountPage> {
                               onPrimary: Colors.pinkAccent,
                               shape: StadiumBorder(),
                               elevation: 10,
+                              side: BorderSide(
+                                color: Colors.pinkAccent,
+                                width: 1,
+                              ),
                             ),
                           ),
                         ],
@@ -168,18 +172,15 @@ class _AccountPageState extends State<AccountPage> {
                                             border: index == 0
                                                 ? Border(
                                                     top: BorderSide(
-                                                        color:
-                                                            Colors.cyanAccent,
+                                                        color: Colors.cyan,
                                                         width: 0),
                                                     bottom: BorderSide(
-                                                        color:
-                                                            Colors.cyanAccent,
+                                                        color: Colors.cyan,
                                                         width: 0),
                                                   )
                                                 : Border(
                                                     bottom: BorderSide(
-                                                        color:
-                                                            Colors.cyanAccent,
+                                                        color: Colors.cyan,
                                                         width: 0),
                                                   )),
                                         padding: EdgeInsets.symmetric(
@@ -248,9 +249,9 @@ class _AccountPageState extends State<AccountPage> {
                                                           padding:
                                                               const EdgeInsets
                                                                       .only(
-                                                                  left: 20.0),
+                                                                  left: 15.0),
                                                           child: Text(DateFormat(
-                                                                  'M/d')
+                                                                  'M月d日')
                                                               .format(post
                                                                   .createdTime!
                                                                   .toDate())),

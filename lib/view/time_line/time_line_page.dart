@@ -62,13 +62,13 @@ class _TimeLinePageState extends State<TimeLinePage> {
                                 border: index == 0
                                     ? Border(
                                         top: BorderSide(
-                                            color: Colors.cyanAccent, width: 0),
+                                            color: Colors.cyan, width: 0),
                                         bottom: BorderSide(
-                                            color: Colors.cyanAccent, width: 0),
+                                            color: Colors.cyan, width: 0),
                                       )
                                     : Border(
                                         bottom: BorderSide(
-                                            color: Colors.cyanAccent, width: 0),
+                                            color: Colors.cyan, width: 0),
                                       )),
                             padding: EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 15),
@@ -131,7 +131,7 @@ class _TimeLinePageState extends State<TimeLinePage> {
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                   left: 20.0),
-                                              child: Text(DateFormat('M/d')
+                                              child: Text(DateFormat('M月d日')
                                                   .format(post.createdTime!
                                                       .toDate())),
                                             )
