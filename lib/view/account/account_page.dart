@@ -114,10 +114,6 @@ class _AccountPageState extends State<AccountPage> {
                               onPrimary: Colors.pinkAccent,
                               shape: StadiumBorder(),
                               elevation: 10,
-                              side: BorderSide(
-                                color: Colors.pinkAccent,
-                                width: 1,
-                              ),
                             ),
                           ),
                         ],
@@ -251,7 +247,7 @@ class _AccountPageState extends State<AccountPage> {
                                                                       .only(
                                                                   left: 15.0),
                                                           child: Text(DateFormat(
-                                                                  'M月d日')
+                                                                  'M/d H:m')
                                                               .format(post
                                                                   .createdTime!
                                                                   .toDate())),

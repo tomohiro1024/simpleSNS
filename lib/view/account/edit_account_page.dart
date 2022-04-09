@@ -92,104 +92,145 @@ class _EditAccountPageState extends State<EditAccountPage> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          width: double.infinity,
-          child: Column(
-            children: [
-              SizedBox(height: 40),
-              GestureDetector(
-                onTap: () async {
-                  await getImageFromGallery();
-                },
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    CircleAvatar(
-                      foregroundImage: getImage(),
-                      backgroundColor: Colors.cyan,
-                      radius: 70,
-                    ),
-                    Icon(
-                      Icons.add_a_photo,
-                      color: Colors.pinkAccent,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 250,
-                child: TextField(
-                  maxLength: 10,
-                  controller: nameController,
-                  decoration: InputDecoration(hintText: 'Name'),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Container(
-                  width: 250,
-                  child: TextField(
-                    maxLength: 10,
-                    controller: userIdController,
-                    decoration: InputDecoration(hintText: 'User ID'),
+      body: Container(
+        color: Colors.pinkAccent.withOpacity(0.5),
+        child: SingleChildScrollView(
+          child: Container(
+            width: double.infinity,
+            child: Column(
+              children: [
+                SizedBox(height: 40),
+                GestureDetector(
+                  onTap: () async {
+                    await getImageFromGallery();
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      CircleAvatar(
+                        foregroundImage: getImage(),
+                        backgroundColor: Colors.cyan,
+                        radius: 70,
+                      ),
+                      Icon(
+                        Icons.add_a_photo,
+                        color: Colors.pinkAccent,
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              Container(
-                width: 250,
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  controller: ageController,
-                  decoration: InputDecoration(hintText: 'age'),
+                SizedBox(height: 20),
+                Container(
+                  width: 270,
+                  child: TextField(
+                    maxLength: 7,
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      hintText: 'Name',
+                      filled: true,
+                      fillColor: Colors.cyanAccent.withOpacity(0.1),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              Container(
-                width: 250,
-                child: TextField(
-                  controller: serfIntroductionController,
-                  decoration: InputDecoration(hintText: 'Comment'),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: Container(
+                    width: 270,
+                    child: TextField(
+                      maxLength: 7,
+                      controller: userIdController,
+                      decoration: InputDecoration(
+                        hintText: 'User ID',
+                        filled: true,
+                        fillColor: Colors.cyanAccent.withOpacity(0.1),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () async {
-                  if (nameController.text.isNotEmpty &&
-                      userIdController.text.isNotEmpty &&
-                      ageController.text.isNotEmpty &&
-                      serfIntroductionController.text.isNotEmpty) {
-                    String imagePath = '';
-                    if (image == null) {
-                      imagePath = myAccount.imagePath;
-                    } else {
-                      var result = await uploadImage(myAccount.id);
-                      imagePath = result;
+                Container(
+                  width: 270,
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    controller: ageController,
+                    decoration: InputDecoration(
+                      hintText: 'age',
+                      filled: true,
+                      fillColor: Colors.cyanAccent.withOpacity(0.1),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Container(
+                  width: 270,
+                  child: TextField(
+                    controller: serfIntroductionController,
+                    decoration: InputDecoration(
+                      hintText: 'Comment',
+                      filled: true,
+                      fillColor: Colors.cyanAccent.withOpacity(0.1),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () async {
+                    if (nameController.text.isNotEmpty &&
+                        userIdController.text.isNotEmpty &&
+                        ageController.text.isNotEmpty &&
+                        serfIntroductionController.text.isNotEmpty) {
+                      String imagePath = '';
+                      if (image == null) {
+                        imagePath = myAccount.imagePath;
+                      } else {
+                        var result = await uploadImage(myAccount.id);
+                        imagePath = result;
+                      }
+                      Account updateAccount = Account(
+                        id: myAccount.id,
+                        name: nameController.text,
+                        age: ageController.text,
+                        userId: userIdController.text,
+                        selfIntroduction: serfIntroductionController.text,
+                        imagePath: imagePath,
+                      );
+                      Authentication.myAccount = updateAccount;
+                      var result =
+                          await UserFirestore.updateUser(updateAccount);
+                      // 更新が成功した場合、画面を戻る
+                      if (result == true) {
+                        Navigator.pop(context, true);
+                      }
                     }
-                    Account updateAccount = Account(
-                      id: myAccount.id,
-                      name: nameController.text,
-                      age: ageController.text,
-                      userId: userIdController.text,
-                      selfIntroduction: serfIntroductionController.text,
-                      imagePath: imagePath,
-                    );
-                    Authentication.myAccount = updateAccount;
-                    var result = await UserFirestore.updateUser(updateAccount);
-                    // 更新が成功した場合、画面を戻る
-                    if (result == true) {
-                      Navigator.pop(context, true);
-                    }
-                  }
-                },
-                child: Text(
-                  'Update',
-                  style: TextStyle(color: Colors.pinkAccent),
+                  },
+                  child: Text(
+                    'Update',
+                    style: TextStyle(color: Colors.pinkAccent),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan,
+                    onPrimary: Colors.pinkAccent,
+                    shape: StadiumBorder(),
+                    elevation: 10,
+                  ),
                 ),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.cyan, //ボタンの背景色
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

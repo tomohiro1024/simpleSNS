@@ -96,7 +96,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 Container(
                   width: 270,
                   child: TextField(
-                    maxLength: 10,
+                    maxLength: 7,
                     controller: nameController,
                     decoration: InputDecoration(
                       hintText: 'Name',
@@ -114,7 +114,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   child: Container(
                     width: 270,
                     child: TextField(
-                      maxLength: 10,
+                      maxLength: 7,
                       controller: userIdController,
                       decoration: InputDecoration(
                         hintText: 'User ID',

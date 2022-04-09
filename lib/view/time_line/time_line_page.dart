@@ -131,7 +131,7 @@ class _TimeLinePageState extends State<TimeLinePage> {
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                   left: 20.0),
-                                              child: Text(DateFormat('M月d日')
+                                              child: Text(DateFormat('M/d H:m')
                                                   .format(post.createdTime!
                                                       .toDate())),
                                             )
